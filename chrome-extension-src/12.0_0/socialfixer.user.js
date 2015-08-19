@@ -2924,6 +2924,7 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 										// Once the CSS has been written, we can wait for DOMContentLoaded
 					// for the rest of the functionality, so the document exists
 										var document_ready = function() {
+											alert('hi');
 						function toggle(o,default_open_option) {if (typeof o=="string") { o=$(o); }if (o && o.style) {var closed = (o.style.display=="none");o.style.display = closed?"":"none";if (default_open_option) {options.set(default_open_option,closed);}}}
 
 						subscribe('page_transition',function() {log('[page_transition]');});
