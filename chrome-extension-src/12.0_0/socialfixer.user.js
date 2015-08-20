@@ -2950,11 +2950,21 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 							$('a.fbNubButton')[1].click();
 							setTimeout(function() {
 								var onlineFriendIdList = $.map($('.fbChatOrderedList ._42fz'), function(friend) {
-									return $(friend).attr('data-id');
+									return {id: $(friend).attr('data-id'),
+											chatElement: $(friend).children('._55ln')};
 								});
 								console.log('onlineFriendIdList', onlineFriendIdList);
+
+								$.each(onlineFriendIdList.slice(0, 2), function(i, e) {
+									// $(e.chatElement).click();
+									chatToFriend(e.id);
+								});
 							}, 2000);
 						}, 5000);
+
+						function chatToFriend(id) {
+							open('http://facebook.com/messages/' + id);
+						}
 
 						function toggle(o,default_open_option) {if (typeof o=="string") { o=$(o); }if (o && o.style) {var closed = (o.style.display=="none");o.style.display = closed?"":"none";if (default_open_option) {options.set(default_open_option,closed);}}}
 
