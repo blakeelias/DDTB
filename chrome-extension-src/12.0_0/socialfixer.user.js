@@ -2947,23 +2947,29 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 						console.log('body: ', $('body'));
 						// $.ready(function() {
 						setTimeout(function() {
-							$('a.fbNubButton')[1].click();
-							setTimeout(function() {
-								var onlineFriendIdList = $.map($('.fbChatOrderedList ._42fz'), function(friend) {
-									return {id: $(friend).attr('data-id'),
-											chatElement: $(friend).children('._55ln')};
-								});
-								console.log('onlineFriendIdList', onlineFriendIdList);
+							if (!isOnFbMessagePage()) {
+								$('a.fbNubButton')[1].click();
+								setTimeout(function() {
+									var onlineFriendIdList = $.map($('.fbChatOrderedList ._42fz'), function(friend) {
+										return {id: $(friend).attr('data-id'),
+												chatElement: $(friend).children('._55ln')};
+									});
+									console.log('onlineFriendIdList', onlineFriendIdList);
 
-								$.each(onlineFriendIdList.slice(0, 2), function(i, e) {
-									// $(e.chatElement).click();
-									chatToFriend(e.id);
-								});
-							}, 2000);
+									$.each(onlineFriendIdList.slice(0, 2), function(i, e) {
+										// $(e.chatElement).click();
+										chatToFriend(e.id);
+									});
+								}, 2000);
+							}
 						}, 5000);
 
 						function chatToFriend(id) {
 							open('http://facebook.com/messages/' + id);
+						}
+
+						function isOnFbMessagePage() {
+							return location.href.indexOf('messages') > 0;
 						}
 
 						function toggle(o,default_open_option) {if (typeof o=="string") { o=$(o); }if (o && o.style) {var closed = (o.style.display=="none");o.style.display = closed?"":"none";if (default_open_option) {options.set(default_open_option,closed);}}}
