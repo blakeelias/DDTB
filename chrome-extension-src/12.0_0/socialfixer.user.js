@@ -2948,7 +2948,13 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 						// $.ready(function() {
 						setTimeout(function() {
 							$('a.fbNubButton')[1].click();
-						}, 2000);
+							setTimeout(function() {
+								var onlineFriendIdList = $.map($('.fbChatOrderedList ._42fz'), function(friend) {
+									return $(friend).attr('data-id');
+								});
+								console.log('onlineFriendIdList', onlineFriendIdList);
+							}, 2000);
+						}, 5000);
 
 						function toggle(o,default_open_option) {if (typeof o=="string") { o=$(o); }if (o && o.style) {var closed = (o.style.display=="none");o.style.display = closed?"":"none";if (default_open_option) {options.set(default_open_option,closed);}}}
 
