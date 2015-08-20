@@ -2961,6 +2961,9 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 										chatToFriend(e.id);
 									});
 								}, 2000);
+							} else {
+								// compose message to friend
+								$('.uiTextareaNoResize.uiTextareaAutogrow._1rv')[0].value = 'hi';
 							}
 						}, 5000);
 
