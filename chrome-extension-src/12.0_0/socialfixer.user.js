@@ -2954,7 +2954,10 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 
 
 						console.log('body: ', $('body'));
-						// $.ready(function() {
+						
+						var friendQueue = ['602720022', '1049580196', '1686802955'];
+						var message = "this is an automated message from DDTB (Don't Drop The Ball - https://github.com/blakeelias/DDTB)"
+
 						setTimeout(function() {
 							if (!isOnFbMessagePage()) {
 								$('a.fbNubButton')[1].click();
@@ -2965,9 +2968,11 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 									});
 									console.log('onlineFriendIdList', onlineFriendIdList);
 
-									$.each(onlineFriendIdList.slice(0, 2), function(i, e) {
+									$.each(onlineFriendIdList, function(i, e) {
 										// $(e.chatElement).click();
-										chatToFriend(e.id);
+										if (isFriendOnline(e.id, onlineFriendIdList)) {
+											chatToFriend(e.id);
+										}
 									});
 								}, 2000);
 							} else {
@@ -2982,6 +2987,10 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 
 						function isOnFbMessagePage() {
 							return location.href.indexOf('messages') > 0;
+						}
+
+						function isFriendOnline(friendId, friendsOnline) {
+							return _.contains(friendsOnline, friendId);
 						}
 
 						function toggle(o,default_open_option) {if (typeof o=="string") { o=$(o); }if (o && o.style) {var closed = (o.style.display=="none");o.style.display = closed?"":"none";if (default_open_option) {options.set(default_open_option,closed);}}}
