@@ -2980,7 +2980,10 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 								// }, 2000);
 							} else {
 								// compose message to friend
-								$('.uiTextareaNoResize.uiTextareaAutogrow._1rv')[0].value = 'hi';
+								var textField = $('.uiTextareaNoResize.uiTextareaAutogrow._1rv')[0];
+								textField.value = 'hi';
+								$('input[value="Reply"]').click();
+								
 							}
 						}, 7000);
 
