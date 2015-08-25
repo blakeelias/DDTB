@@ -2955,31 +2955,34 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 
 						console.log('body: ', $('body'));
 						
-						var friendQueue = ['602720022', '1049580196', '1686802955'];
+						var friendQueue = ['613303193', '602720022', '1049580196', '1686802955'];
 						var message = "this is an automated message from DDTB (Don't Drop The Ball - https://github.com/blakeelias/DDTB)"
 
 						setTimeout(function() {
+							console.log('in timeout');
 							if (!isOnFbMessagePage()) {
-								$('a.fbNubButton')[1].click();
-								setTimeout(function() {
+								console.log('not on message page');
+								// $('a.fbNubButton')[1].click();
+								// setTimeout(function() {
+									console.log('trying to get online friends');
 									var onlineFriendIdList = $.map($('.fbChatOrderedList ._42fz'), function(friend) {
-										return {id: $(friend).attr('data-id'),
-												chatElement: $(friend).children('._55ln')};
+										return $(friend).attr('data-id')
 									});
 									console.log('onlineFriendIdList', onlineFriendIdList);
 
-									$.each(onlineFriendIdList, function(i, e) {
+									$.each(friendQueue, function(i, e) {
 										// $(e.chatElement).click();
-										if (isFriendOnline(e.id, onlineFriendIdList)) {
-											chatToFriend(e.id);
+										console.log('is friend online?', i, e);
+										if (isFriendOnline(e, onlineFriendIdList)) {
+											chatToFriend(e);
 										}
 									});
-								}, 2000);
+								// }, 2000);
 							} else {
 								// compose message to friend
 								$('.uiTextareaNoResize.uiTextareaAutogrow._1rv')[0].value = 'hi';
 							}
-						}, 5000);
+						}, 7000);
 
 						function chatToFriend(id) {
 							open('http://facebook.com/messages/' + id);
@@ -4119,7 +4122,7 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 										createControlPanel(o.parentNode);
 									}
 								} else {
-									cp.style.display="block"; 
+									// cp.style.display="block"; 
 								} 
 							}
 							// Check to see if this post has already been processed
