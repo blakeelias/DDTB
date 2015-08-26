@@ -2974,6 +2974,7 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 										// $(e.chatElement).click();
 										console.log('is friend online?', i, e);
 										if (isFriendOnline(e, onlineFriendIdList)) {
+											console.log('friend online', e);
 											chatToFriend(e);
 										}
 									});
@@ -3827,7 +3828,6 @@ else if (chrome && chrome.extension && chrome.extension.sendRequest) {
 								else {
 									html(s,val);
 								}
-								s.style.color='red';
 							}
 						}
 
