@@ -12,4 +12,15 @@
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+  {{#each messages}}
+  	{{> message}}
+  {{/each}}
 </template>
+
+<template name="message">
+  <div class="message">
+    <div style="float: left">{{friendId}}</div>
+    <div style="float: right">{{text}}</div>
+  </div>
+</template>
+
